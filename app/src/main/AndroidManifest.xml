@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.federicogovoni.permissionmanager">
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <application
+        android:name="com.federicogovoni.permissionsmanager.PermissionsManager"
+        android:icon="@mipmap/adapter_row_custom_application_application_icon_image_view"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${googleMapsApiKey}" />
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9125265928210219~3176045725"/>
+
+        <activity
+            android:name="com.federicogovoni.permissionsmanager.view.main.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.federicogovoni.permissionsmanager.view.main.applications.PermissionsActivity"
+            android:clearTaskOnLaunch="true"
+            android:parentActivityName="com.federicogovoni.permissionsmanager.view.main.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.federicogovoni.permissionsmanager.view.main.MainActivity" />
+        </activity>
+        <activity android:name="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.NewContextActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.federicogovoni.permissionsmanager.view.main.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.MapsActivityCurrentPlace"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.MapsActivityCurrentPlace" />
+        </activity>
+        <activity
+            android:name="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.ChoosePermissionsNewContextActivity"
+            android:label="Permissions">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.federicogovoni.permissionsmanager.view.main.contexts.newcontext.NewContextActivity" />
+        </activity>
+
+        <receiver android:name="com.federicogovoni.permissionsmanager.controller.BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="com.federicogovoni.permissionsmanager.RESTART_SERVICE" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="com.federicogovoni.permissionsmanager.controller.location.LocationService"
+            android:process=":location_service"
+            android:exported="true"/>
+        <service
+            android:name="com.federicogovoni.permissionsmanager.controller.location.LocationJobService"
+            android:exported="true"
+            android:process=":location_job_service"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <receiver
+            android:name="com.federicogovoni.permissionsmanager.controller.Alarm"
+            android:process=":alarm" />
+    </application>
+
+</manifest>

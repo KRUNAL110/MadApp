@@ -1,0 +1,76 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ExpandableListView
+            android:id="@+id/activity_choose_permissions_new_context_expandable_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/common_google_signin_btn_text_dark_default"
+            android:divider="@color/colorAccent"
+            android:dividerHeight="1px"
+            android:headerDividersEnabled="true"
+            android:groupIndicator="@null"
+            android:visibility="visible"
+            android:paddingBottom="164dp"
+            android:clipToPadding="false"/>
+
+        <RelativeLayout
+            android:id="@+id/activity_choose_permissions_new_context_empty_list_relative_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/activity_choose_permissions_new_context_empty_list_image_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/no_permissions_logo"/>
+
+            <TextView
+                android:id="@+id/activity_choose_permissions_new_context_empty_list_text_view"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/activity_choose_permissions_new_context_empty_list_image_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:textColor="#616161"
+                android:textAlignment="center"
+                android:text="@string/no_app_available"/>
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/activity_choose_permissions_new_context_floating_action_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:layout_marginBottom="100dp"
+            android:visibility="gone"
+            android:src="@drawable/tick"/>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/acrtivity_choose_permissions_new_context_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true" />
+
+        <include layout="@layout/ad_view_component" />
+
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
